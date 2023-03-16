@@ -1,0 +1,10 @@
+1,João Silva,Rua das Flores 123,123456789,8500.00
+2,Maria Santos,Avenida do Mar 567,234567890,3000.25
+3,Francisco Pereira,Travessa das Oliveiras 910,345678901,6500.75
+4,Ana Costa,Rua das Andorinhas 1112,456789012,1900.30
+5,Ricardo Soares,Praça dos Laranjais 1314,567890123,4900.15
+6,Sofia Fernandes,Rua do Sol Nascente 1516,678901234,7800.50
+7,Miguel Gomes,Avenida das Rosas 1718,789012345,2500.20
+8,Carla Pinto,Rua dos Plátanos 1920,890123456,4100.35
+9,Manuel Oliveira,Rua do Miradouro 2122,901234567,3300.65
+10,Luciana Marques,Praça do Coreto 2324,102345678,9800.70
