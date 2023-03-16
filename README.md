@@ -1,0 +1,2 @@
+# Mobility Manager
+ This document should be viewed as a reference for a classical approach to developing a software solution for a medium-sized problem. The essence of this project relates to the development of a software solution that streamlines the management (registration, sharing, use) of urban mobility resources in the context of a smart city. The implementation of the solution should consider dynamic data structures, file storage, modularization, and present adequate structuring and documentation.
