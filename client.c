@@ -15,7 +15,18 @@ ClientNode *create_client(const char *nif, double balance, const char *name, con
 	strncpy_s(new_client->client.nif, 10, nif, _TRUNCATE);
 	new_client->client.balance = balance;
 	new_client->client.name = _strdup(name);
+	 if (!new_client->client.name) {
+		printf("Error: Memory allocation failed for name.\n");
+		free(new_client);
+		exit(1);
+	}
 	new_client->client.address = _strdup(address);
+	 if (!new_client->client.address) {
+		printf("Error: Memory allocation failed for address.\n");
+		free(new_client->client.name);
+		free(new_client);
+		exit(1);
+	}
 	new_client->next = NULL;
 
 	return new_client;
@@ -23,6 +34,7 @@ ClientNode *create_client(const char *nif, double balance, const char *name, con
 
 
 int add_client(ClientNode **clients, ClientNode *new_client) {
+
 	if (!*clients) {
 		*clients = new_client;
 	} else {
