@@ -1,18 +1,2 @@
 ﻿  client.c
-  main.c
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(30,25): warning C4477: 'scanf_s': a cadeia de formato '%9s' requer um argumento do tipo 'unsigned int', mas um argumento variadic 2 tem o tipo 'unsigned __int64'
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(30,25): message : esse argumento é usado como um tamanho do buffer
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(32,25): warning C4477: 'scanf_s': a cadeia de formato '%s' requer um argumento do tipo 'unsigned int', mas um argumento variadic 2 tem o tipo 'unsigned __int64'
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(32,25): message : esse argumento é usado como um tamanho do buffer
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(34,25): warning C4477: 'scanf_s': a cadeia de formato '%s' requer um argumento do tipo 'unsigned int', mas um argumento variadic 2 tem o tipo 'unsigned __int64'
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(34,25): message : esse argumento é usado como um tamanho do buffer
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(51,25): warning C4477: 'scanf_s': a cadeia de formato '%9s' requer um argumento do tipo 'unsigned int', mas um argumento variadic 2 tem o tipo 'unsigned __int64'
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(51,25): message : esse argumento é usado como um tamanho do buffer
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(66,25): warning C4477: 'scanf_s': a cadeia de formato '%9s' requer um argumento do tipo 'unsigned int', mas um argumento variadic 2 tem o tipo 'unsigned __int64'
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(66,25): message : esse argumento é usado como um tamanho do buffer
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(75,25): warning C4477: 'scanf_s': a cadeia de formato '%99s' requer um argumento do tipo 'unsigned int', mas um argumento variadic 2 tem o tipo 'unsigned __int64'
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(75,25): message : esse argumento é usado como um tamanho do buffer
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(82,25): warning C4477: 'scanf_s': a cadeia de formato '%199s' requer um argumento do tipo 'unsigned int', mas um argumento variadic 2 tem o tipo 'unsigned __int64'
-C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\main.c(82,25): message : esse argumento é usado como um tamanho do buffer
-  Gerando Código...
   MobilityManager.vcxproj -> C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\x64\Debug\MobilityManager.exe

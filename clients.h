@@ -11,17 +11,18 @@
 #include "headers.h"
 
 typedef struct Client {
-    char nif[10];
-    double balance;
-    char *name;
-    char *address;
+	char nif[10];
+	double balance;
+	char *name;
+	char *address;
 } Client;
 
 typedef struct ClientNode {
-    Client client;
-    struct ClientNode *next;
+	Client client;
+	struct ClientNode *next;
 } ClientNode;
 
+	
 // Creates a new client and returns a pointer to it.
 // nif: NIF string (up to 9 characters)
 // balance: client's balance
@@ -58,7 +59,7 @@ int save_clients_to_binary_file(ClientNode *clients);
 
 // Loads the clients list from a binary file.
 // Returns a pointer to the loaded clients list or NULL if not found.
-ClientNode *load_clients_from_binary_file();
+ClientNode *load_clients_from_binary_file(ClientNode **existing_clients);
 
 // Saves the clients list to a text file.
 // clients: the clients list to be saved
@@ -67,7 +68,7 @@ int save_clients_to_text_file(ClientNode *clients);
 
 // Loads the clients list from a text file.
 // Returns a pointer to the loaded clients list or NULL if not found.
-ClientNode *load_clients_from_text_file();
+ClientNode *load_clients_from_text_file(ClientNode **existing_clients);
 
 #endif  // CLIENTS_H
 

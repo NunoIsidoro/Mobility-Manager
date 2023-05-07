@@ -2,8 +2,9 @@
 #include "headers.h"
 
 int main() {
-    // Carregar os clientes do arquivo binário ou do arquivo de texto
-    ClientNode *clients = load_clients_from_binary_file();
+       // Load clients from the binary file or the text file
+    ClientNode *clients = NULL;
+    clients = load_clients_from_binary_file(&clients);
     if (!clients) {
         printf("No clients found. Creating a new list.\n");
         clients = NULL;
