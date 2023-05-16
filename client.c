@@ -23,11 +23,10 @@
  * \return A pointer to the newly created ClientNode object
  * \author Nuno Fernandes
  */
-ClientNode *create_client(const char *nif, double balance, const char *name, const char *address) {
+ClientNode *CreateClient(const char *nif, double balance, const char *name, const char *address) {
 	ClientNode *new_client = (ClientNode *) malloc(sizeof(ClientNode));
 	if (!new_client) {
-		printf("Error: Memory allocation failed.\n");
-		exit(1);
+		return NULL;
 	}
 
 	strncpy_s(new_client->client.nif, 10, nif, _TRUNCATE);
@@ -42,6 +41,7 @@ ClientNode *create_client(const char *nif, double balance, const char *name, con
 	return new_client;
 }
 
+
 /**
  * \brief Adds a new client node to the client list and saves the list to a binary file
  *
@@ -55,7 +55,7 @@ ClientNode *create_client(const char *nif, double balance, const char *name, con
  * \return 0 on successful addition and saving, -1 if an error occurs while saving to the binary file
  * \author Nuno Fernandes
  */
-int add_client(ClientNode **clients, ClientNode *new_client) {
+int AddClient(ClientNode **clients, ClientNode *new_client) {
 
 	if (!*clients) {
 		*clients = new_client;
@@ -67,8 +67,7 @@ int add_client(ClientNode **clients, ClientNode *new_client) {
 		current->next = new_client;
 	}
 
-	if (save_clients_to_binary_file(*clients) != 0) {
-		printf("Error: Failed to save clients to binary file.\n");
+	if (SaveClientsToBinaryFile(*clients) != 0) {
 		return -1;
 	}
 
@@ -87,7 +86,7 @@ int add_client(ClientNode **clients, ClientNode *new_client) {
  * \return 0 on successful removal and saving, -1 if the client is not found or an error occurs while saving to the binary file
  * \author Nuno Fernandes
  */
-int remove_client(ClientNode **clients, const char *nif) {
+int RemoveClient(ClientNode **clients, const char *nif) {
 	if (!*clients) return -1;
 
 	ClientNode *current = *clients;
@@ -105,8 +104,7 @@ int remove_client(ClientNode **clients, const char *nif) {
 			free(current->client.address);
 			free(current);
 
-			if (save_clients_to_binary_file(*clients) != 0) {
-				printf("Error: Failed to save clients to binary file.\n");
+			if (SaveClientsToBinaryFile(*clients) != 0) {
 				return -1;
 			}
 
@@ -133,7 +131,7 @@ int remove_client(ClientNode **clients, const char *nif) {
  * \return A pointer to the found ClientNode object if it exists, NULL if the client is not found or the list is empty
  * \author Nuno Fernandes
  */
-ClientNode *find_client(ClientNode *clients, const char *nif) {
+ClientNode *FindClient(ClientNode *clients, const char *nif) {
 	ClientNode *current = clients;
 	while (current) {
 		if (strcmp(current->client.nif, nif) == 0) {
@@ -154,7 +152,7 @@ ClientNode *find_client(ClientNode *clients, const char *nif) {
  * \param clients A pointer to the head of the client list
  * \author Nuno Fernandes
  */
-void delete_client_list(ClientNode *clients) {
+void DeleteClientList(ClientNode *clients) {
 	ClientNode *current = clients;
 	ClientNode *next;
 
@@ -178,11 +176,10 @@ void delete_client_list(ClientNode *clients) {
  * \return 0 on successful saving, -1 if there is an error opening the binary file for writing
  * \author Nuno Fernandes
  */
-int save_clients_to_binary_file(ClientNode *clients) {
+int SaveClientsToBinaryFile(ClientNode *clients) {
 	FILE *fp;
 	errno_t err = fopen_s(&fp, BIN_FILENAME, "wb");
 	if (err) {
-		printf("Error: Failed to open binary file for writing.\n");
 		return -1;
 	}
 
@@ -197,37 +194,6 @@ int save_clients_to_binary_file(ClientNode *clients) {
 	return 0;
 }
 
-//ClientNode *load_clients_from_binary_file() {
-//	FILE *fp;
-//	errno_t err = fopen_s(&fp, BIN_FILENAME, "rb");
-//
-//	if (err) {
-//		printf("Warning: Binary file not found. Attempting to load from text file.\n");
-//		return load_clients_from_text_file();
-//	}
-//
-//	ClientNode *clients = NULL;
-//
-//	// Verificar se o arquivo não está vazio
-//	fseek(fp, 0L, SEEK_END);
-//	int file_size = ftell(fp);
-//	fseek(fp, 0L, SEEK_SET);
-//	if (file_size == 0) {
-//		fclose(fp);
-//		return load_clients_from_text_file();
-//	}
-//
-//	// Ler os dados do arquivo e adicionar à lista encadeada
-//	Client client;
-//	while (fread(&client, sizeof(Client), 1, fp)) {
-//		ClientNode *new_node = create_client(client.nif, client.balance, client.name, client.address);
-//		add_client(&clients, new_node);
-//	}
-//
-//	fclose(fp);
-//	return clients;
-//}
-
 /**
  * \brief Loads the client list from a binary file or falls back to a text file
  *
@@ -240,17 +206,16 @@ int save_clients_to_binary_file(ClientNode *clients) {
  * \return A pointer to the head of the newly loaded client list
  * \author Nuno Fernandes
  */
-ClientNode *load_clients_from_binary_file(ClientNode **existing_clients) {
+ClientNode *LoadClientsFromBinaryFile(ClientNode **existing_clients) {
 	FILE *fp;
 	errno_t err = fopen_s(&fp, BIN_FILENAME, "rb");
 
 	if (err) {
-		printf("Warning: Binary file not found. Attempting to load from text file.\n");
-		return load_clients_from_text_file(existing_clients);
+		return LoadClientsFromTextFile(existing_clients);
 	}
 
 	if (*existing_clients) {
-		delete_client_list(*existing_clients);
+		DeleteClientList(*existing_clients);
 	}
 
 	ClientNode *clients = NULL;
@@ -261,14 +226,14 @@ ClientNode *load_clients_from_binary_file(ClientNode **existing_clients) {
 	fseek(fp, 0L, SEEK_SET);
 	if (file_size == 0) {
 		fclose(fp);
-		return load_clients_from_text_file(existing_clients);
+		return LoadClientsFromTextFile(existing_clients);
 	}
 
 	// Read data from the file and add to the linked list
 	Client client;
 	while (fread(&client, sizeof(Client), 1, fp)) {
-		ClientNode *new_node = create_client(client.nif, client.balance, client.name, client.address);
-		add_client(&clients, new_node);
+		ClientNode *new_node = CreateClient(client.nif, client.balance, client.name, client.address);
+		AddClient(&clients, new_node);
 	}
 
 	fclose(fp);
@@ -287,11 +252,10 @@ ClientNode *load_clients_from_binary_file(ClientNode **existing_clients) {
  * \return 0 on successful saving, -1 if there is an error opening the text file for writing
  * \author Nuno Fernandes
  */
-int save_clients_to_text_file(ClientNode *clients) {
+int SaveClientsToTextFile(ClientNode *clients) {
 	FILE *fp;
 	errno_t err = fopen_s(&fp, TXT_FILENAME, "w");
 	if (err) {
-		printf("Error: Failed to open text file for writing.\n");
 		return -1;
 	}
 
@@ -306,35 +270,6 @@ int save_clients_to_text_file(ClientNode *clients) {
 }
 
 
-//ClientNode *load_clients_from_text_file() {
-//	FILE *fp;
-//	errno_t err = fopen_s(&fp, TXT_FILENAME, "r");
-//	if (err) {
-//		printf("Error: Text file not found.\n");
-//		return NULL;
-//	}
-//
-//	ClientNode *clients = NULL;
-//	char buffer[MAX_LINE_LEN];
-//
-//	while (fgets(buffer, MAX_LINE_LEN, fp)) {
-//		char *context = NULL;
-//		char *nif_str = strtok_s(buffer, ",", &context);
-//		char *balance_str = strtok_s(NULL, ",", &context);
-//		char *name = strtok_s(NULL, ",", &context);
-//		char *address = strtok_s(NULL, ",", &context);
-//		if (nif_str && balance_str && name && address) {
-//			double balance = atof(balance_str);
-//			ClientNode *new_node = create_client(nif_str, balance, name, address);
-//			add_client(&clients, new_node);
-//		}
-//	}
-//
-//	fclose(fp);
-//	save_clients_to_binary_file(clients); // Salvar os clientes em um arquivo binário
-//	return clients;
-//}
-
 /**
  * \brief Loads the client list from a text file
  *
@@ -347,16 +282,15 @@ int save_clients_to_text_file(ClientNode *clients) {
  * \return A pointer to the head of the newly loaded client list
  * \author Nuno Fernandes
  */
-ClientNode *load_clients_from_text_file(ClientNode **existing_clients) {
+ClientNode *LoadClientsFromTextFile(ClientNode **existing_clients) {
 	FILE *fp;
 	errno_t err = fopen_s(&fp, TXT_FILENAME, "r");
 	if (err) {
-		printf("Error: Text file not found.\n");
 		return NULL;
 	}
 
 	if (*existing_clients) {
-		delete_client_list(*existing_clients);
+		DeleteClientList(*existing_clients);
 	}
 
 	ClientNode *clients = NULL;
@@ -370,12 +304,12 @@ ClientNode *load_clients_from_text_file(ClientNode **existing_clients) {
 		char *address = strtok_s(NULL, ",", &context);
 		if (nif_str && balance_str && name && address) {
 			double balance = atof(balance_str);
-			ClientNode *new_node = create_client(nif_str, balance, name, address);
-			add_client(&clients, new_node);
+			ClientNode *new_node = CreateClient(nif_str, balance, name, address);
+			AddClient(&clients, new_node);
 		}
 	}
 
 	fclose(fp);
-	save_clients_to_binary_file(clients); // Save clients to a binary file
+	SaveClientsToBinaryFile(clients); // Save clients to a binary file
 	return clients;
 }

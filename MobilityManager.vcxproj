@@ -135,7 +135,7 @@
   <ItemGroup>
     <ClInclude Include="clients.h" />
     <ClInclude Include="headers.h" />
-    <ClInclude Include="manager.h" />
+    <ClInclude Include="managers.h" />
     <ClInclude Include="mobility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

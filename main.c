@@ -4,7 +4,7 @@
 int main() {
        // Load clients from the binary file or the text file
     ClientNode *clients = NULL;
-    clients = load_clients_from_binary_file(&clients);
+    clients = LoadClientsFromBinaryFile(&clients);
     if (!clients) {
         printf("No clients found. Creating a new list.\n");
         clients = NULL;
@@ -36,12 +36,12 @@ int main() {
                 printf("Enter initial balance: ");
                 scanf_s("%lf", &balance);
 
-                ClientNode *new_client = create_client(nif, balance, name, address);
-                if (add_client(&clients, new_client)) {
+                ClientNode *new_client = CreateClient(nif, balance, name, address);
+                if (AddClient(&clients, new_client)) {
                     printf("\nError: Failed to add client. Invalid or duplicate NIF.\n");
                 } else {
                     printf("\nClient added successfully.\n");
-                    save_clients_to_binary_file(clients);
+                    SaveClientsToBinaryFile(clients);
                 }
                 break;
             }
@@ -51,11 +51,11 @@ int main() {
                 printf("\nEnter client NIF: ");
                 scanf_s("%9s", nif, _countof(nif));
 
-                if (remove_client(&clients, nif)) {
+                if (RemoveClient(&clients, nif)) {
                     printf("\nError: Client not found.\n");
                 } else {
                     printf("\nClient removed successfully.\n");
-                    save_clients_to_binary_file(clients);
+                    SaveClientsToBinaryFile(clients);
                 }
                 break;
             }
@@ -66,7 +66,7 @@ int main() {
                 printf("\nEnter client NIF: ");
                 scanf_s("%9s", nif, _countof(nif));
 
-                ClientNode *client = find_client(clients, nif);
+                ClientNode *client = FindClient(clients, nif);
                 if (!client) {
                     printf("\nError: Client not found.\n");
                     break;
@@ -93,7 +93,7 @@ int main() {
                 }
 
                 printf("\nClient updated successfully.\n");
-                save_clients_to_binary_file(clients);
+                SaveClientsToBinaryFile(clients);
                 break;
             }
 
@@ -129,8 +129,8 @@ int main() {
     } while (option != 5);
 
     // Salvar os clientes no arquivo binário e liberar a memória da lista
-    save_clients_to_binary_file(clients);
-    delete_client_list(clients);
+    SaveClientsToBinaryFile(clients);
+    DeleteClientList(clients);
 
     return 0;
 }

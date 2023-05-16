@@ -35,7 +35,7 @@
     <ClInclude Include="clients.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="manager.h">
+    <ClInclude Include="managers.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="mobility.h">
