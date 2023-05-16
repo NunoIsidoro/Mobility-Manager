@@ -5,7 +5,7 @@
 #include <string.h>
 #include <ctype.h>
 
-ManagerNode *create_manager(const char *id, double salary, const char *name, const char *department) {
+ManagerNode *CreateManager(const char *id, double salary, const char *name, const char *department) {
 	ManagerNode *new_manager = malloc(sizeof(ManagerNode));
 	if (new_manager == NULL) {
 		return NULL; // Allocation failed
@@ -18,7 +18,7 @@ ManagerNode *create_manager(const char *id, double salary, const char *name, con
 	return new_manager;
 }
 
-int add_manager(ManagerNode **managers, ManagerNode *new_manager) {
+int AddManager(ManagerNode **managers, ManagerNode *new_manager) {
 	if (managers == NULL || new_manager == NULL) {
 		return -1; // Invalid arguments
 	}
@@ -27,7 +27,7 @@ int add_manager(ManagerNode **managers, ManagerNode *new_manager) {
 	return 0;
 }
 
-int remove_manager(ManagerNode **managers, const char *id) {
+int RemoveManager(ManagerNode **managers, const char *id) {
 	if (managers == NULL || *managers == NULL || id == NULL) {
 		return -1; // Invalid arguments
 	}
@@ -51,7 +51,7 @@ int remove_manager(ManagerNode **managers, const char *id) {
 	return -1; // Manager not found
 }
 
-ManagerNode *find_manager(ManagerNode *managers, const char *id) {
+ManagerNode *FindManager(ManagerNode *managers, const char *id) {
 	while (managers != NULL) {
 		if (strcmp(managers->manager.id, id) == 0) {
 			return managers;
@@ -61,7 +61,7 @@ ManagerNode *find_manager(ManagerNode *managers, const char *id) {
 	return NULL; // Manager not found
 }
 
-void delete_manager_list(ManagerNode *managers) {
+void DeleteManagerList(ManagerNode *managers) {
 	ManagerNode *next;
 	while (managers != NULL) {
 		next = managers->next;
@@ -72,18 +72,18 @@ void delete_manager_list(ManagerNode *managers) {
 	}
 }
 
-int save_managers_to_binary_file(ManagerNode *managers) {
+int SaveManagersToBinaryFile(ManagerNode *managers) {
 	// TODO implement this function 
 }
 
-ManagerNode *load_managers_from_binary_file(ManagerNode **existing_managers) {
+ManagerNode *LoadManagersFromBinaryFile(ManagerNode **existing_managers) {
 	// TODO implement this function
 }
 
-int save_managers_to_text_file(ManagerNode *managers) {
+int SaveManagersToTextFile(ManagerNode *managers) {
 	// TODO implement this function
 }
 
-ManagerNode *load_managers_from_text_file(ManagerNode **existing_managers) {
+ManagerNode *LoadManagersFromTextFile(ManagerNode **existing_managers) {
 	// TODO implement this function
 }
