@@ -19,13 +19,25 @@
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="client.c">
-      <Filter>Arquivos de Recurso</Filter>
+      <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="manager.c">
-      <Filter>Arquivos de Recurso</Filter>
+      <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="mobility.c">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="menuClient.c">
       <Filter>Arquivos de Recurso</Filter>
+    </ClCompile>
+    <ClCompile Include="menuManager.c">
+      <Filter>Arquivos de Recurso</Filter>
+    </ClCompile>
+    <ClCompile Include="utilis.c">
+      <Filter>Arquivos de Recurso</Filter>
+    </ClCompile>
+    <ClCompile Include="location.c">
+      <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +51,12 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="mobility.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="utilis.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="locations.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

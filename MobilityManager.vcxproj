@@ -128,15 +128,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="client.c" />
+    <ClCompile Include="location.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="manager.c" />
+    <ClCompile Include="menuClient.c" />
+    <ClCompile Include="menuManager.c" />
     <ClCompile Include="mobility.c" />
+    <ClCompile Include="utilis.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clients.h" />
     <ClInclude Include="headers.h" />
+    <ClInclude Include="locations.h" />
     <ClInclude Include="managers.h" />
     <ClInclude Include="mobility.h" />
+    <ClInclude Include="utilis.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

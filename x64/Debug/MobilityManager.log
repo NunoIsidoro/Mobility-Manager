@@ -1,2 +1,20 @@
 ﻿  client.c
-  MobilityManager.vcxproj -> C:\Users\nunoi\OneDrive\Documentos\University\EAD\MobilityManager\x64\Debug\MobilityManager.exe
+  location.c
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\location.c(146,15): warning C4047: 'return': 'int *' difere em níveis de indireção de 'int'
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\location.c(187,37): warning C4133: 'função': tipos incompatíveis - de 'LocationSurroundingsNode *' para 'LocationNode *'
+  main.c
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\main.c(38,34): warning C4020: 'ManagerMenu': muitos parâmetros reais
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\main.c(16,16): warning C4133: 'inicializando': tipos incompatíveis - de 'LocationSurroundingsNode *' para 'LocationNode *'
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\main.c(21,7): warning C4101: 'userNIF': variável local não referenciada
+  manager.c
+  menuClient.c
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\menuClient.c(82,2): warning C4013: 'SaveClientsToBinaryFile' indefinido; assumindo extern retornando int
+  menuManager.c
+  mobility.c
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\mobility.c(92,22): warning C4477: 'fscanf': a cadeia de formato '%s' requer um argumento do tipo 'char *', mas um argumento variadic 9 tem o tipo 'int *'
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\mobility.c(92,22): warning C4473: 'fscanf' : não há argumentos suficientes transmitidos para a cadeia de caracteres de formato
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\mobility.c(92,22): message : espaços reservados e seus parâmetros esperam 10 argumentos variadic, mas 9 foram fornecidos
+C:\Users\nunoi\Documents\GitHub\Mobility-Manager\mobility.c(92,22): message : o argumento variadic 10 ausente é requerido pela cadeia de formato '%s'
+  utilis.c
+  Gerando Código...
+  MobilityManager.vcxproj -> C:\Users\nunoi\Documents\GitHub\Mobility-Manager\x64\Debug\MobilityManager.exe

@@ -1,0 +1,19 @@
+111111111, ManagerTest, Portugal
+123456780, João, Aveiro
+123456781, Manuel, Beja
+123456782, Ana, Braga
+123456783, Maria, Bragança
+123456784, Carlos, Castelo Branco
+123456785, Pedro, Coimbra
+123456786, Margarida, Évora
+123456787, Filipa, Faro
+123456788, Ricardo, Guarda
+123456789, Luís, Leiria
+123456790, Beatriz, Lisboa
+123456791, Nuno, Portalegre
+123456792, Sara, Porto
+123456793, Teresa, Santarém
+123456794, Duarte, Setúbal
+123456795, Paulo, Viana do Castelo
+123456796, António, Vila Real
+123456797, Diana, Viseu

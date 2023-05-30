@@ -1,0 +1,18 @@
+1,Aveiro,///maca.sentem.tornam
+2,Beja,///advier.gamela.durou
+3,Braga,///calha.recodificado.juros
+4,Bragança,///verão.folhudas.versos
+5,Castelo Branco,///preço.efetuei.arara
+6,Coimbra,///chorão.combinei.guaranás
+7,Évora,///nessas.surgiu.hinos
+8,Faro,///irão.jogam.sortudos
+9,Guarda,///telecomunicação.amam.valorizava
+10,Leiria,///efetua.suflê.agulha
+11,Lisboa,///dera.espiou.afeto
+12,Portalegre,///chamo.janota.convites
+13,Porto,///acha.topete.ervilhas
+14,Santarém,///cetim.gaiolas.bancos
+15,Setúbal,///servem.deteve.beneficência
+16,Viana do Castelo,///memorizar.dossiê.revaloriza
+17,Vila Real,///emas.adorou.noite
+18,Viseu,///colonizado.ratoeira.lutas

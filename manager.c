@@ -1,89 +1,108 @@
-
+// managers.c
 #include "managers.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 
-ManagerNode *CreateManager(const char *id, double salary, const char *name, const char *department) {
-	ManagerNode *new_manager = malloc(sizeof(ManagerNode));
-	if (new_manager == NULL) {
-		return NULL; // Allocation failed
-	}
-	strncpy_s(new_manager->manager.id, sizeof(new_manager->manager.id), id, _TRUNCATE);
-	new_manager->manager.salary = salary;
-	new_manager->manager.name = _strdup(name);
-	new_manager->manager.department = _strdup(department);
-	new_manager->next = NULL;
-	return new_manager;
-}
+#define MAX_LINE_LENGTH 256
 
-int AddManager(ManagerNode **managers, ManagerNode *new_manager) {
-	if (managers == NULL || new_manager == NULL) {
-		return -1; // Invalid arguments
-	}
-	new_manager->next = *managers;
-	*managers = new_manager;
-	return 0;
-}
+ManagerNode* AddManager(ManagerNode* head, Manager newManager) {
+	ManagerNode* newNode = (ManagerNode*)malloc(sizeof(ManagerNode));
+	newNode->manager = newManager;
+	newNode->next = NULL;
 
-int RemoveManager(ManagerNode **managers, const char *id) {
-	if (managers == NULL || *managers == NULL || id == NULL) {
-		return -1; // Invalid arguments
+	if (head == NULL || strcmp(newManager.name, head->manager.name) < 0) {
+		newNode->next = head;
+		head = newNode;
 	}
-	ManagerNode *current = *managers;
-	ManagerNode *previous = NULL;
-	while (current != NULL) {
-		if (strcmp(current->manager.id, id) == 0) {
-			if (previous == NULL) {
-				*managers = current->next; // Removing the head of the list
-			} else {
-				previous->next = current->next;
-			}
-			free(current->manager.name);
-			free(current->manager.department);
-			free(current);
-			return 0;
+	else {
+		ManagerNode* current = head;
+		while (current->next != NULL && strcmp(newManager.name, current->next->manager.name) > 0) {
+			current = current->next;
 		}
-		previous = current;
+		newNode->next = current->next;
+		current->next = newNode;
+	}
+
+	return head;
+}
+
+ManagerNode* LoadManagersFromTextFile(const char* filename) {
+	FILE* file = fopen(filename, "r");
+	if (file == NULL) {
+		return NULL;
+	}
+
+	ManagerNode* head = NULL;
+	Manager newManager;
+
+	while (fscanf(file, "%[^,],%[^,],%[^\n]\n", newManager.nif, newManager.name, newManager.departmentLocation) == 3) {
+		head = AddManager(head, newManager);
+	}
+
+	fclose(file);
+	return head;
+}
+
+
+ManagerNode* LoadManagersFromBinaryFile(const char* filename) {
+	FILE* file = fopen(filename, "rb");
+	if (file == NULL) {
+		return NULL;
+	}
+
+	ManagerNode* head = NULL;
+	Manager temp;
+
+	while (fread(&temp, sizeof(Manager), 1, file) == 1) {
+		head = AddManager(head, temp);
+	}
+
+	fclose(file);
+	return head;
+}
+
+ManagerNode* LoadManagers(const char* binFilename, const char* txtFilename) {
+	ManagerNode* head = LoadManagersFromBinaryFile(binFilename);
+
+	if (head == NULL) {
+		head = LoadManagersFromTextFile(txtFilename);
+	}
+
+	return head;
+}
+
+// Libera a memória da lista de gestores
+void FreeManagers(ManagerNode* head) {
+	ManagerNode* temp;
+
+	while (head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		free(temp);
+	}
+}
+
+void SaveManagersToFile(const char* filename, ManagerNode* head) {
+	FILE* file = fopen(filename, "wb");
+	if (file == NULL) {
+		return;
+	}
+
+	ManagerNode* current = head;
+	while (current != NULL) {
+		fwrite(&(current->manager), sizeof(Manager), 1, file);
 		current = current->next;
 	}
-	return -1; // Manager not found
+
+	fclose(file);
 }
 
-ManagerNode *FindManager(ManagerNode *managers, const char *id) {
-	while (managers != NULL) {
-		if (strcmp(managers->manager.id, id) == 0) {
-			return managers;
+ManagerNode* FindManagerByNif(ManagerNode* head, char* nif) {
+	ManagerNode* current = head;
+	while (current != NULL) {
+		if (strcmp(current->manager.nif, nif) == 0) {
+			return current;
 		}
-		managers = managers->next;
+		current = current->next;
 	}
-	return NULL; // Manager not found
-}
-
-void DeleteManagerList(ManagerNode *managers) {
-	ManagerNode *next;
-	while (managers != NULL) {
-		next = managers->next;
-		free(managers->manager.name);
-		free(managers->manager.department);
-		free(managers);
-		managers = next;
-	}
-}
-
-int SaveManagersToBinaryFile(ManagerNode *managers) {
-	// TODO implement this function 
-}
-
-ManagerNode *LoadManagersFromBinaryFile(ManagerNode **existing_managers) {
-	// TODO implement this function
-}
-
-int SaveManagersToTextFile(ManagerNode *managers) {
-	// TODO implement this function
-}
-
-ManagerNode *LoadManagersFromTextFile(ManagerNode **existing_managers) {
-	// TODO implement this function
+	return NULL;
 }
